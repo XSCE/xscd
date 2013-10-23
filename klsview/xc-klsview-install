@@ -1,0 +1,10 @@
+#!/bin/bash
+
+#copy the conf file
+rm -rf /etc/httpd/conf.d/klsview.conf
+cp /media/usb0/XC/xc-klsview/klsview.conf /etc/httpd/conf.d/
+#copy the kls folder to /library
+rm -rf /library/klsview 
+cp -r /media/usb0/XC/xc-klsview/klsview /library/
+chown -R apache:apache /library/klsview 
+

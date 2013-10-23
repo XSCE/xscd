@@ -1,0 +1,38 @@
+]{% extends "core.html" %} 
+
+{% block title %}Library{% endblock %}
+
+{% block head %}
+<script type='text/javascript'>
+  title = '{{ title }}'
+  collection = '{{ collection_id }}'
+  url = 'http://schoolserver/library/'
+  $(function(){
+    $('img')
+      .addClass('.book_line')
+      .click(function(){
+         if($(this).attr('collection')=='list'){
+             window.location=url+'topic/'+$(this).attr('id')+'/';
+         }else{
+             window.location=url+'list/'+$(this).attr('collection')+'/0';
+         };
+      });
+  });
+</script>
+{% endblock %}
+
+{% block content %}
+
+    {% for topic in topic_list %}
+
+    <p id= {{ topic.class }} class = {{ topic.class }} > {{ topic.title }}
+      <img id= {{ topic.topic }} collection= {{ topic.collection }} 
+           src=http://schoolserver/static/image/{{ topic.image }}
+      /> 
+    </p>
+
+    {% endfor %}    
+
+{%  endblock %}
+
+

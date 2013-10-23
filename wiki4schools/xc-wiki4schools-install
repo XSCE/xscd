@@ -1,0 +1,24 @@
+#!/bin/bash
+
+wktar=xc-wiki4schools.tar.gz
+
+log() {
+    logger -p user.notice -t nexc-wiktionary-inst -s -- "$1" 
+}
+
+
+if ! sha256sum -c --status ${wktar}.md5; then
+	log "md5sum check failed"
+	exit 1
+fi
+
+rm -rf /library/wiki
+mkdir -p /library/wiki
+
+if ! tar -xzf $wktar; then
+	log "could not extract $wktar"
+	exit 1
+fi
+
+#cp mediawiki /var/www/wiki
+

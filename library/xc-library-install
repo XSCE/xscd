@@ -1,0 +1,108 @@
+#install library 
+cp -r library /library/schoolsite
+
+#update settings.py
+# add schoolsite/library to apps
+#update urls.py
+# add library urls to urls.py
+python library_install.py
+
+#install  httpd conf files
+cp library.conf /etc/httpd/conf.d
+
+cd /library/schoolsite
+python manage.py syncdb
+
+python manage.py loadCollection en/p01 
+python manage.py loadCollection en/p02
+python manage.py loadCollection en/p03
+python manage.py loadCollection en/p04
+python manage.py loadCollection en/p05
+python manage.py loadCollection en/p06
+python manage.py loadCollection en/p07
+python manage.py loadCollection en/p08
+python manage.py loadCollection en/p09
+python manage.py loadCollection en/p10
+python manage.py loadCollection en/p11
+python manage.py loadCollection en/p12
+python manage.py loadCollection en/p13
+python manage.py loadCollection en/p14
+python manage.py loadCollection en/p15
+python manage.py loadCollection en/p16
+python manage.py loadCollection en/p17
+python manage.py loadCollection en/p18
+python manage.py loadCollection en/p19
+python manage.py loadCollection en/p20
+python manage.py loadCollection en/p21
+python manage.py loadCollection en/p22
+python manage.py loadCollection en/p23
+python manage.py loadCollection en/p24
+python manage.py loadCollection en/p25
+python manage.py loadCollection en/p26
+python manage.py loadCollection en/p27
+python manage.py loadCollection en/p28
+python manage.py loadCollection en/b01
+python manage.py loadCollection en/b02
+python manage.py loadCollection en/b03
+python manage.py loadCollection en/b04
+python manage.py loadCollection en/b05
+python manage.py loadCollection en/m01
+python manage.py loadCollection xo/a01
+
+python manage.py loadCollection otr/amhist
+python manage.py loadCollection otr/annie
+python manage.py loadCollection otr/believeitornot
+python manage.py loadCollection otr/belltelephone
+python manage.py loadCollection otr/bennygoodman
+python manage.py loadCollection otr/bergenmccarthy
+python manage.py loadCollection otr/bigband
+python manage.py loadCollection otr/bigjon
+python manage.py loadCollection otr/bigshow
+python manage.py loadCollection otr/billymills
+python manage.py loadCollection otr/bobcrosby
+python manage.py loadCollection otr/bobhope
+python manage.py loadCollection otr/britten
+python manage.py loadCollection otr/burnsallen
+python manage.py loadCollection otr/cbs
+python manage.py loadCollection otr/cbsradioworkshop
+python manage.py loadCollection otr/CoA
+python manage.py loadCollection otr/columbia_works
+python manage.py loadCollection otr/crosbyclooney
+python manage.py loadCollection otr/dragnet
+python manage.py loadCollection otr/elvispresley
+python manage.py loadCollection otr/enchantedhour
+python manage.py loadCollection otr/flashgordon
+python manage.py loadCollection otr/gangbusters
+python manage.py loadCollection otr/gerswhin
+python manage.py loadCollection otr/glennmiller
+python manage.py loadCollection otr/gunsmoke
+python manage.py loadCollection otr/hearitnow
+python manage.py loadCollection otr/history
+python manage.py loadCollection otr/JB
+python manage.py loadCollection otr/jubilee
+python manage.py loadCollection otr/keen
+python manage.py loadCollection otr/lespaul
+python manage.py loadCollection otr/lone_ranger
+python manage.py loadCollection otr/melodyranch
+python manage.py loadCollection otr/MercurySummerTheatre
+python manage.py loadCollection otr/mickeymouse
+python manage.py loadCollection otr/misc
+python manage.py loadCollection otr/nbc
+python manage.py loadCollection otr/ourmissbrooks
+python manage.py loadCollection otr/pollparrot
+python manage.py loadCollection otr/pretend
+python manage.py loadCollection otr/royrogers
+python manage.py loadCollection otr/shakespeare
+python manage.py loadCollection otr/sherlockholmes
+python manage.py loadCollection otr/sipython manage.py loadCollection otr/shooter
+python manage.py loadCollection otr/Sousa
+python manage.py loadCollection otr/spike_jones
+python manage.py loadCollection otr/suspense
+python manage.py loadCollection otr/tomcorbett
+python manage.py loadCollection otr/victorborge
+python manage.py loadCollection otr/YouAreThere
+python manage.py loadCollection otr/YourHitParade
+python manage.py loadCollection otr/yukon
+
+#now restart
+python manage.py syncdb

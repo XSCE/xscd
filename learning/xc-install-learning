@@ -1,0 +1,12 @@
+#!/bin/bash
+
+echo 'attempting to install learning'
+
+rm -rf /library/learning
+cp -r /media/usb0/XC/xc-learning/learning /library/
+rm -rf /etc/httpd/conf.d/learning.conf
+cp /media/usb0/XC/xc-learning/learning.conf /etc/httpd/conf.d/
+rm -rf /etc/httpd/conf.d/010-make-moodle-default.conf
+cp /media/usb0/XC/xc-learning/010-make-moodle-default.conf /etc/httpd/conf.d
+chown -R apache:apache /library/learning
+chmod -R 755 /library/learning

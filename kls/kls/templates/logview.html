@@ -1,0 +1,28 @@
+{% extends "score.html" %}
+
+{% block title %}<h1>Student History</h1>{% endblock title %}
+{% block content %}
+<div id='list' style='font-size:20pt;'>
+<table>
+<thead>
+<tr>
+<td>Log</td>
+<td>Time</td>
+<td>Title</td>
+<td>Activity</td>
+<td>Mime</td>
+</tr>
+<tbody>
+{% for item in log %}
+<tr>
+<td>{{ forloop.counter }}</td>
+<td>{{ item.mtime }}</td>
+<td>{{ item.title }}</td>
+<td>{{ item.activity }}</td>
+<td>{{ item.mime_type }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+{% endblock content %}

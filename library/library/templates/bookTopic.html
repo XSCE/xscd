@@ -1,0 +1,54 @@
+{% block head %}
+
+<meta charset=utf-8 />
+
+<link rel="stylesheet" type="text/css"
+      href="/static/css/library.css"
+/>
+<script type="text/javascript"
+      src="/static/js/jquery.js">
+</script>
+<script type="text/javascript"
+      src="/static/js/library.js">
+</script>
+<script type="text/javascript"
+      src="/static/js/download.js">
+</script>
+<title> {% block title %}Library {% endblock %} </title>
+
+<script type='text/javascript'>
+  $(function(){
+    $ ('td')
+      .addClass('.book_line')
+      .click(function(){window.location='http://schoolserver/library/list/'+$(this).attr('id')+'/0'})
+  });
+</script>
+
+{% endblock %}
+
+{% block content %}
+    
+  <h1>Collections</h1>
+    <table>
+    <tbody>
+    <tr>
+    {% for collection in topic %}
+    <td id = {{ collection.id }} >
+    <p><em> {{ collection.title }} </em></p>
+    </td>
+    {%if forloop.counter|divisibleby:"3" %}
+    </tr>
+    <tr>
+    {% endif %}
+    {% endfor %}
+   </tr>
+   </tbody>
+   </table>
+{% endblock %}
+
+{% block footer %}
+
+  <p id='footer1'>Showing Collections</p>
+
+{% endblock %}
+

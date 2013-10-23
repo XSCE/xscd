@@ -1,0 +1,26 @@
+{% extends "score.html" %}
+{% block title %}<h1>Class List</h1>{% endblock %}
+{% block head %}
+<script type=text/javascript>
+url='http://schoolserver/bibliotheque/school/log/'
+function log(id){
+  window.location=url+id 
+}
+</script>
+{% endblock %}
+
+{% block content %}
+<div id='list' style='font-size:20pt;'>
+<ol>
+{% for student in roster %}
+<li id='anything' 
+    xo={{ student.serial }} 
+    onclick="log($('#anything').attr('xo'))"> 
+    {{ student.last }}, 
+    {{ student.first }} xo:{{ student.xo }}, 
+    {{ student.serial }}
+</li>
+{% endfor %}
+</ol>
+</div>
+{% endblock %}

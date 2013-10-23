@@ -1,0 +1,265 @@
+#!/bin/bash
+# Author: Daniel Drake <dsd@laptop.org>
+# XS auto-usbmount import script for code parts of the e-library
+#modified for Rwanda configuration <tony_anderson@usa.net>
+
+set -e
+
+VERBOSE=No
+
+# Log a string via the syslog facility.
+log()
+{
+	if test $1 != debug || expr "$VERBOSE" : "[yY]" > /dev/null; then
+		logger -p user.$1 -t "xc-code[$$]" -- "$2"
+		echo "$(date "+%F %T") xc-code: $2"
+	fi
+}
+
+error_beep()
+{
+	echo -en '\033[10;1000]\033[11;100]\007' > /dev/console
+	sleep 0.2
+	echo -en '\033[10;1000]\033[11;100]\007' > /dev/console
+	sleep 0.2
+	echo -en '\033[10]\033[11]' > /dev/console
+	return 0
+}
+
+UM_MOUNTPOINT="/mnt/usb0"
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-iiab/xc-iiab-install ]; then
+        log notice "Installing IIAB front-end"
+        cd xc-iiab/
+        if bash xc-iiab-install; then
+            log notice "IIAB front-end installed successfully"
+        else
+            log notice "IIAB front-end install failed with code $?"
+            error_beep
+        fi
+	cd ../
+else
+    	log notice 'IIAB front-end not found'
+        error_beep
+fi
+
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-knowledge/xc-knowledge-install ]; then
+        log notice "Installing IIAB content"
+        cd xc-knowledge/
+        if bash xc-knowledge-install; then
+            log notice "IIAB content installed successfully"
+        else
+            log notice "IIAB content install failed with code $?"
+            error_beep
+        fi
+        cd ../
+else
+        log notice 'IIAB content not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-schoolsite/xc-schoolsite-install ]; then
+	log notice "Installing schoolsite"
+       	cd xc-schoolsite/
+        if bash xc-schoolsite-install; then
+            log notice "Schoolsite installed successfully"
+       	else
+            log notice "Schoolsite install failed with code $?"
+            error_beep
+        fi
+       	cd ../
+else
+        log notice 'Schoolsite not found'
+       	error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-static/xc-static-install ]; then
+        log notice "Installing static content"
+        cd xc-static
+       	if bash xc-static-install; then
+            log notice "static files installed successfully"
+        else
+            log notice "static files  install failed with code $?"
+            error_beep
+        fi
+else
+       	log notice 'static install not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-media/xc-media-install ]; then
+        log notice "Installing media"
+        cd xc-media/
+        if bash xc-media-install; then
+            log notice "media content installed successfully"
+        else
+            log notice "media content install failed with code $?"
+            error_beep
+        fi
+	cd ../
+else
+        log notice 'media content not found'
+        error_beep
+fi
+
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-repo/xc-repo-install ]; then
+        log notice "Installing Centos 6.2 repo"
+        cd xc-repo/
+        if bash xc-repo-install; then
+            log notice "CentOS 6.2 repo installed successfully"
+        else
+            log notice "CentOS 6.2 repo  install failed with code $?"
+            error_beep
+        fi
+        cd ../
+else
+        log notice 'CentOS 6.2 repo not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-kls/xc-kls-install ]; then
+        log notice "Installing Karma Learning System"
+        cd xc-kls
+        if bash xc-kls-install; then
+            log notice "Karma Learning System installed successfully"
+        else
+            log notice "Karma Laarning System  install failed with code $?"
+            error_beep
+        fi
+else
+        log notice 'Karma Learning System  not found'
+        error_beep
+
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-library/xc-library-install ]; then
+        log notice "Installing library"
+        cd xc-library
+        if bash xc-library-install; then
+            log notice "Library installed successfully"
+        else
+            log notice "Library install failed with code $?"
+            error_beep
+        fi
+else
+        log notice 'Library not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-homeview/xc-homeview-install ]; then
+        log notice "Installing homeview"
+        cd xc-homeview
+        if bash xc-homeview-install; then
+            log notice "homeview installed successfully"
+        else
+            log notice "homeview install failed with code $?"
+            error_beep
+        fi
+else
+        log notice 'homeview not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-learning/xc-install-learning ]; then
+        log notice "Installing learning"
+        cd xc-learning
+        if bash xc-install-learning; then
+            log notice "learning installed successfully"
+        else
+            log notice "learning install failed with code $?"
+            error_beep
+        fi
+else
+    	log notice 'learn not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-moodle/xc-moodle-install ]; then
+        log notice "Installing moodle"
+        cd xc-moodle
+        if bash xc-moodle-install; then
+            log notice "moodle installed successfully"
+        else
+            log notice "moodle install failed with code $?"
+            error_beep
+        fi
+else
+        log notice 'moodle not found'
+        error_beep
+
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-itembank/xc-itembank-install ]; then
+        log notice "Installing Item Bank"
+        cd xc-itembank
+        if bash xc-itembank-install; then
+            log notice "Item Bank installed successfully"
+        else
+            log notice "Item Bank install failed with code $?"
+            error_beep
+        fi
+else
+        log notice 'itembank not found'
+        error_beep
+
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-wiki/xc-wiki4schools-install ]; then
+        log notice "Installing Wiki4Schools"
+        cd xc-wiki
+        if bash xc-wiki4schools-install; then
+            log notice "wiki4schools installed successfully"
+        else
+            log notice "wiki4schools install failed with code $?"
+            error beep
+        fi
+else
+        log notice 'xc-wiki not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-mediawiki/xc-mediawiki-install ]; then
+        log notice "Installing Mediawiki"
+        cd xc-mediawiki
+        if bash xc-mediawiki-install; then
+            log notice "Mediawiki installed successfully"
+        else
+            log notice "Mediawiki install failed with code $?"
+            error beep
+        fi
+else
+        log notice 'xc-mediawiki not found'
+        error_beep
+fi
+
+cd "$UM_MOUNTPOINT"/XC
+if [ -f xc-wiktionary/xc-wiktionary-install ]; then
+        log notice "Installing Wiktionary"
+        cd xc-wiktionary
+        if bash xc-wiktionary-install; then
+            log notice "wiktionary installed successfully"
+        else
+            log notice "wiktionary install failed with code $?"
+            error beep
+        fi
+else
+        log notice 'xc-wiktionary not found'
+        error_beep
+fi
+
