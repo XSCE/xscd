@@ -1,0 +1,22 @@
+#!/bin/bash
+
+#take backup from existing moodle
+#su - postgres
+#pg_dump moodle-xs > moodle-xs.sql
+
+#stop httpd
+/etc/init.d/httpd stop
+
+#copy the moodle folder to /library
+rm -rf /library/moodle
+cp -r moodle /library/moodle
+chown -R apache:apache /library/moodle
+
+#restore the moodle-xs.sql backup of the database
+psql -d moodle-xs -f moodle-xs.sql
+#replace config.php file in /var/www/moodle/web and update /etc/httpd/conf.d/moodle.conf (if necessary)
+cp config.php /var/www/moodle/web
+cp moodle.conf /etc/httpd/conf.d
+
+#start httpd
+/etc/init.d/httpd start

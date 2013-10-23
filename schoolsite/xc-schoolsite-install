@@ -1,0 +1,34 @@
+#!/bin/bash
+
+echo 'attempting django install'
+
+#install path.py
+cp path.py /usr/bin
+
+#remove any existing Django
+rm -rf /var/www/Django*
+
+#install Django
+cp Django-1.4.1.tar.gz /var/www
+cd /var/www
+tar zxf Django-1.4.1.tar.gz
+cd /var/www/Django-1.4.1
+python setup.py install > /dev/null
+
+#install project but keep static
+mkdir -p /library/schoolsite
+rm -rf /library/schoolsite/manage.py
+rm -rf /library/schoolsite/schoolsite
+cd /media/usb0/XC/xc-schoolsite
+cp -r schoolsite/manage.py /library/schoolsite
+cp -r schoolsite/schoolsite /library/schoolsite
+chown -R apache:apache /library/schoolsite
+chmod -R 755 /library/schoolsite
+
+#set up wsgi
+rpm -ivh mod_wsgi-3.2-1.el6.i686.rpm
+
+#copy httpd configuration
+cp wsgi.conf /etc/httpd/conf.d
+cp schoolsite.conf /etc/httpd/conf.d
+cp resources.conf /etc/httpd/conf.d

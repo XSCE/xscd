@@ -1,0 +1,160 @@
+This folder contains the scripts to load content onto a school server. In 
+addition, there are folders of content to be loaded which must be available 
+to the scripts.
+
+The disk from which the install takes place must have a folder XC in the 
+root. This folder name is recognized by a usbmount and a script xc-install 
+in this folder is executed. 
+
+Each content element has a folder in XC such as xc-wiki. This folder has 
+a script: xc-wiki-install. That script installs the wiki content. 
+
+Also, this folder must contain the content.
+
+The following is a guide to the content required in each folder and where 
+it may be found. This content is not considered appropriate for version 
+control in this project.
+
+**moodle**
+
+A moodle folder which contains a folder for each Moodle course to be
+installed.
+
+A backup of the Moodle database consistent with the content of the moodle 
+folder: moodle-xs.sql.
+
+**schoolsite**
+
+The Django tarball: Django-1.4.1.tar.gz
+The sha1 key for the tarball: django-1.4.1.tar.gz.sha1
+The rpm to install mod_wsgi:mod_wsgi-3.2-1.el6.i686.rpm
+Note: this may be installed as part of xsce and removed from this script.
+
+**klsview**
+
+klsview folder
+
+**homeview**
+
+homeview folder   
+
+**wiki4schools**
+
+The wiki4schools tarball and the sha1 for the tarball:
+
+xc-wiki4schools.tar.gz  
+xc-wiki4schools.tar.gz.sha1
+
+**mediawiki**
+
+The mediawiki tarball:
+
+mediawiki-1.19.2.tar.gz
+
+**dictionary**
+
+The Wiktionary data file and sha1 file:
+
+xc-wiktionary-pages-articles.sql.gz
+xc-wiktionary-pages-articles.sql.gz.sha1
+
+**knowledge**
+
+The folder containing the IIAB modules:
+
+knowledge
+
+**iiab**
+
+The iiab tarball:
+
+ iiab-venv-centos-20130816.tgz
+
+The iiab virtual environment:
+
+ iiab-venv
+
+**media**
+
+The content files for the library feature:
+
+  media
+    en - English language books collection
+    otr - Old Time Radio and Music collections
+    xo - Sugar Activities collection
+
+**learning**
+
+  learn
+    khan1 - content for khan1 course
+    khan2 - content for khan2 course
+    ze1 - content for Siyavula English Grade 1
+    ze2 - content for Siyavula English Grade 2
+    ze3 - content for Siyavula English Grade 3
+    ze4 - content for Siyavula English Grade 4    
+    ze5 - content for Siyavula English Grade 5
+    ze6 - content for Siyavula English Grade 6
+
+  resources 
+    sje431 - content for Ecole Saint Jacob English Grade 1 Term 1
+    sje432 - content for Ecole Saint Jacob English Grade 1 Term 2
+    sje433 - content for Ecole Saint Jacob English Grade 1 Term 3
+    sje431 - content for Ecole Saint Jacob English Grade 4 Term 1
+    sje432 - content for Ecole Saint Jacob English Grade 4 Term 2
+    sje433 - content for Ecole Saint Jacob English Grade 4 Term 3
+    sje531 - content for Ecole Saint Jacob English Grade 5 Term 1
+    sje532 - content for Ecole Saint Jacob English Grade 5 Term 2
+    sje533 - content for Ecole Saint Jacob English Grade 5 Term 3
+    sje461 - content for Ecole Saint Jacob English Grade 6 Term 1
+    sje462 - content for Ecole Saint Jacob English Grade 6 Term 2
+    sje463 - content for Ecole Saint Jacob English Grade 6 Term 3
+
+    sje431 - content for Ecole Saint Jacob English Grade 4 Term 1
+    sje432 - content for Ecole Saint Jacob English Grade 4 Term 2
+    sje433 - content for Ecole Saint Jacob English Grade 4 Term 3
+    sje531 - content for Ecole Saint Jacob English Grade 5 Term 1
+    sje532 - content for Ecole Saint Jacob English Grade 5 Term 2
+    sje533 - content for Ecole Saint Jacob English Grade 5 Term 3
+    sje631 - content for Ecole Saint Jacob English Grade 6 Term 1
+    sje632 - content for Ecole Saint Jacob English Grade 6 Term 2
+    sje633 - content for Ecole Saint Jacob English Grade 6 Term 3
+
+    sjm431 - content for Ecole Saint Jacob Mathematics Grade 4 Term 1
+    sjm432 - content for Ecole Saint Jacob Mathematics Grade 4 Term 2
+    sjm433 - content for Ecole Saint Jacob Mathematics Grade 4 Term 3
+    sjm531 - content for Ecole Saint Jacob Mathematics Grade 5 Term 1
+    sjm532 - content for Ecole Saint Jacob Mathematics Grade 5 Term 2
+    sjm533 - content for Ecole Saint Jacob Mathematics Grade 5 Term 3
+    sjm631 - content for Ecole Saint Jacob Mathematics Grade 6 Term 1
+    sjm632 - content for Ecole Saint Jacob Mathematics Grade 6 Term 2
+    sjm633 - content for Ecole Saint Jacob Mathematics Grade 6 Term 3
+
+    sjs431 - content for Ecole Saint Jacob Science Grade 4 Term 1
+    sjs432 - content for Ecole Saint Jacob Science Grade 4 Term 2
+    sjs433 - content for Ecole Saint Jacob Science Grade 4 Term 3
+    sjs531 - content for Ecole Saint Jacob Science Grade 5 Term 1
+    sjs532 - content for Ecole Saint Jacob Science Grade 5 Term 2
+    sjs533 - content for Ecole Saint Jacob Science Grade 5 Term 3
+    sjs631 - content for Ecole Saint Jacob Science Grade 6 Term 1
+    sjs632 - content for Ecole Saint Jacob Science Grade 6 Term 2
+    sjs633 - content for Ecole Saint Jacob Science Grade 6 Term 3
+ 
+  explore
+    cli - content for command line interface introduction
+    cli2 - content for command line interface second course
+    cli3 - content for command line interface third course
+    cli4 - content for command line interface fourth course
+    linux1 - content for Linux Essentials course
+    web - content for introduction to the web course
+    terminal1 - content for the introduction to the command line interface
+    python1 - content for python course 1
+    python2 - content for python course 2
+    python3 - content for python course 3
+
+**static**
+  admin - folder for Django admin app
+  css - css stylesheets
+  image - image folder
+  js - javascript scripts
+  khan - Khan Academy exercises
+

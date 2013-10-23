@@ -1,0 +1,34 @@
+#!/bin/bash
+
+mwver=1.19.2
+mwtar=mediawiki-${mwver}.tar.gz
+
+log() {
+    logger -p user.notice -t nexc-wiktionary-inst -s -- "$1" 
+}
+
+if [ ! -e $mwtar ]; then
+	log "Could not find $mwtar"
+	exit 1
+fi
+
+if [ ! -e LocalSettings.php ]; then
+	log "Could not find LocalSettings.php"
+	exit 1
+fi
+
+#if ! md5sum -c --status ${mwtar}.md5; then
+#	log "md5sum check failed"
+#	exit 1
+#fi
+
+rm -rf /var/www/wiki
+mkdir -p /var/www/wiki
+
+if ! tar -xzf $mwtar; then
+	log "could not extract $mwtar"
+	exit 1
+fi
+
+mv mediawiki-${mwver} /var/www/wiki
+

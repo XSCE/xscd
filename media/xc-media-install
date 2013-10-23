@@ -1,0 +1,9 @@
+#!/usr/bin/bash
+
+#install media
+rm -rf /library/schoolsite/static/media
+cp -r media /library/schoolsite/static
+
+chown -R apache:apache /library/schoolsite
+chmod -R 755 /library/schoolsite
+

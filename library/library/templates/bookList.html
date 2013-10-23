@@ -1,0 +1,76 @@
+
+{% block head %}
+<meta charset=utf-8 />
+
+  <link rel="stylesheet" type="text/css"
+      href="/static/css/library.css"
+  />
+  <script type="text/javascript"
+      src="/static/js/jquery.js">
+  </script>
+  <script type="text/javascript"
+      src="/static/js/library.js">
+  </script>
+  <script type="text/javascript"
+      src="/static/js/download.js">
+  </script>
+  <title> {% block title %}Library{% endblock %} </title>
+
+<script type='text/javascript'>
+  $(function(){
+    $('figure')
+      .addClass('.book_line')
+      .click(function(){
+          lang = $(this).attr('language');
+          filename = $(this).attr('filename');
+          window.location = 
+          'http://schoolserver/static/media/'+lang+'/'+filename;
+      });
+  });
+</script>
+
+{% endblock %}
+
+{% block content %}
+    <div id="gallery" 
+         pageno = {{ pageno }} 
+         collection_id = {{ collection_id }} 
+         title = {{ collection_title }}
+         lastpage={{ lastpage }}
+    >
+    {{ pageno }} 
+    {{ collection_id }}
+    {{ collection_title }}
+    {{ lastpage }}
+    <table>
+    <tr>
+    {% for book in book_list %}
+      <td>
+        <figure id = {{ book.id }}  
+                filename = {{ collection_id }}/{{ book.book_file }}
+                title = "{{ book.a_title }}"
+                language= {{ book.dc_language }}
+                mime_type= {{ book.mime_type }}
+        >
+        <img src=http://schoolserver/static/media/{{ book.dc_language }}/{{ collection_id }}/thumbnails/{{ book.img }}
+                alt = {{ book.img }}  />
+        <figcaption>{{ book.a_title }} </figcaption>
+        </figure> 
+     </td>
+       {%if forloop.counter|divisibleby:"3" %}
+       </tr>
+       <tr>
+      {% endif %}
+    {% endfor %}
+    </tr>
+    </table>
+    </div>
+
+{%  endblock %}
+
+<div id = "footer">
+  {% block footer %}
+  {% endblock %}
+</div>
+
+

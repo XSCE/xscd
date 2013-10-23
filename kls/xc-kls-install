@@ -1,0 +1,20 @@
+#install kls app 
+cp -r kls /library/schoolsite
+
+#update settings.py
+# add schoolsite/library to apps
+#update urls.py
+# add library urls to urls.py
+python kls_install.py
+
+#install fixtures
+cd /library/schoolsite
+python manage.py syncdb
+python manage.py loadxo  kls/data/xo_id.csv
+python manage.py loadpnr kls/data/staff.csv
+python manage.py loadpnr kls/data/p4.csv
+python manage.py loadpnr kls/data/p5.csv
+python manage.py loadpnr kls/data/p6.csv
+#python manage.py setProfile staff
+#now restart
+python manage.py syncdb

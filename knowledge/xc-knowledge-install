@@ -1,0 +1,6 @@
+#!/bin/bash
+
+#copy the knowledge folder to /library
+rm -rf /library/knowledge
+cp -r /media/usb0/knowledge /library/knowledge
+chown -R apache:apache /library/knowledge

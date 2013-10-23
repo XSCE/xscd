@@ -1,0 +1,42 @@
+#!/bin/bash
+
+log() {
+    logger -p user.notice -t nexc-wiktionary-inst -s -- "$1" 
+}
+
+if [ ! -e LocalSettings.php ]; then
+	log "Could not find LocalSettings.php"
+	exit 1
+fi
+
+rm -rf /var/www/wiktionary
+mkdir -p /var/www/wiktionary
+
+#if ! tar -C /var/www/wiktionary --strip-components 1 -xzf $mwtar; then
+#	log "could not extract $mwtar"
+#	exit 1
+#fi
+
+cp -v $PWD/LocalSettings.php /var/www/wiktionary
+rm -rf /var/www/wiktionary/config
+
+echo "
+DROP DATABASE IF EXISTS wiktionary;
+CREATE DATABASE wiktionary;
+GRANT ALL ON wiktionary.* to wiktionary@localhost IDENTIFIED BY 'wiktionary';
+FLUSH PRIVILEGES;
+" | mysql -u root
+
+mysql -u wiktionary --password=wiktionary wiktionary < /var/www/wiktionary/maintenance/tables.sql
+mysql -u wiktionary --password=wiktionary wiktionary < /var/www/wiktionary/maintenance/interwiki.sql
+
+echo "INSERT INTO site_stats VALUES (1,0,1,0,1,1,-1,1,0);" | mysql -u wiktionary --password=wiktionary wiktionary
+
+cp wiktionary-import.sh /etc/cron.daily
+chmod a+x /etc/cron.daily/wiktionary-import.sh
+
+cp -f -r extensions/* /var/www/wiktionary/extensions
+
+# remove Discussion tab
+echo "#ca-talk { display: none "'!'"important;}"  >> /var/www/wiktionary/skins/monobook/main.css 
+

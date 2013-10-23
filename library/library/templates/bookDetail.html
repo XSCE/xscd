@@ -1,0 +1,49 @@
+{% extends "core.html" %} 
+
+{% block title %}<h1>Book Detail<h1>{% endblock %}
+
+{% block head %}
+<script type='text/javascript'>
+$(function(){
+     filename=$('#download').attr('filename');
+     title=$('#download').attr('title');
+     language=$('#download').attr('language');
+     mime_type=$('#download').attr('mime_type');
+     $('#download')
+       .click(function(){
+         download(filename, title, language, mime_type);
+     })
+});
+</script>
+{% endblock %}
+
+{% block content %}
+  <h1>Collection: {{ book.get_a_collection_display }}</h1>
+  <img src = {{ thumbnailPath }}> Path {{ thumbnailPath }} Name {{ thumbnail }} </img>
+  <p>Title: {{ book.a_title }}</p>
+  <p>Author: {{ book.a_author }}</p>
+  <p>Summary: {{ book.a_summary }}</p>
+  <p>Category:{{ book.a_category }}</p>
+  <p>Rights:{{ book.a_rights }}</p>
+  <p>Language:{{ book.get_dc_language_display }}</p>
+  <p>Publisher:{{ book.dc_publisher }}</p>
+  <p>Publication Year:{{book.dc_issued }}</p>
+  <p>ISBN:{{ book.dc_idenfifier }}</p>
+  <p>Added:{{ book.time_added }}</p>
+  <p>Mime_Type:{{ book.mime_type }}</p>
+  <p>tags:{{ book.tags }}</p>
+  <h1 id='download' 
+     filename={{ book.book_file }}
+     title='{{ book.a_title }}'
+     language={{ book.dc_language }}
+     mime_type={{ book.mime_type }}>
+    Download
+  </h1>
+{%  endblock %}
+
+{% block footer %}
+
+  <p id='footer1'>Showing {{ book.id }} Downloads: {{ book.downloads }}</p>
+
+{% endblock %}
+

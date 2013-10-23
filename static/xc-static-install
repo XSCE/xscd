@@ -1,0 +1,27 @@
+#!/usr/bin/bash
+
+mkdir -p /library/schoolsite/static
+
+#install admin
+rm -rf /library/schoolsite/static/admin
+cp -r static/admin /library/schoolsite/static
+
+#install css
+rm -rf /library/schoolsite/static/css
+cp -r static/css /library/schoolsite/static
+
+#install image
+rm -rf /library/schoolsite/static/image
+cp -r static/image /library/schoolsite/static
+
+#install js
+rm -rf /library/schoolsite/static/js
+cp -r static/js /library/schoolsite/static
+
+#install khan
+rm -rf /library/schoolsite/static/khan
+cp -r static/khan /library/schoolsite/static
+
+chown -R apache:apache /library/schoolsite
+chmod -R 755 /library/schoolsite
+
